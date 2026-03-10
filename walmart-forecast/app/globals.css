@@ -1,0 +1,240 @@
+/* ── Custom Fonts ─────────────────────────────────── */
+@font-face {
+  font-family: 'Athletics';
+  src: url('https://fonts.cdnfonts.com/s/74542/Athletics-Regular.woff') format('woff');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Athletics';
+  src: url('https://fonts.cdnfonts.com/s/74542/Athletics-Regular.woff') format('woff');
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Editorial New';
+  src: url('https://fonts.cdnfonts.com/s/78295/PPEditorialNew-Ultralight.woff') format('woff');
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+}
+@import url('https://fonts.googleapis.com/css2?family=Geist+Mono:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --cloud:   #e7ecef;
+  --ocean:   #006989;
+  --sky:     #90dbf4;
+  --navy:    #134074;
+  --crimson: #a70b0b;
+  --rose:    #ad343e;
+  --forest:  #7ca982;
+  --dark:    #243e36;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+
+body {
+  background: linear-gradient(145deg,#e4edf2 0%,#cddfe8 55%,#b8d2df 100%);
+  background-attachment: fixed;
+  color: #134074;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+/* ── Grain texture — CSS only, zero JS ─────────────── */
+body::before {
+  content:'';
+  position:fixed; inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.88' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.022'/%3E%3C/svg%3E");
+  pointer-events:none; z-index:0; opacity:0.55;
+  will-change: auto;
+}
+
+/* ── CSS-only ambient blobs (NO JS) ────────────────── */
+.ambient-blobs {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+.blob {
+  position: absolute;
+  border-radius: 50%;
+  will-change: transform;
+}
+.blob-1 {
+  width: 520px; height: 520px;
+  background: radial-gradient(circle, rgba(0,105,137,0.18) 0%, transparent 65%);
+  top: -10%; left: -8%;
+  animation: bfloat1 14s ease-in-out infinite;
+}
+.blob-2 {
+  width: 460px; height: 460px;
+  background: radial-gradient(circle, rgba(144,219,244,0.22) 0%, transparent 65%);
+  top: 8%; right: 5%;
+  animation: bfloat2 18s ease-in-out infinite;
+}
+.blob-3 {
+  width: 380px; height: 380px;
+  background: radial-gradient(circle, rgba(19,64,116,0.1) 0%, transparent 65%);
+  top: 55%; left: 12%;
+  animation: bfloat3 20s ease-in-out infinite;
+}
+.blob-4 {
+  width: 400px; height: 400px;
+  background: radial-gradient(circle, rgba(124,169,130,0.09) 0%, transparent 65%);
+  bottom: 5%; right: 8%;
+  animation: bfloat4 16s ease-in-out infinite;
+}
+@keyframes bfloat1 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(20px,-22px)} }
+@keyframes bfloat2 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(-18px,18px)} }
+@keyframes bfloat3 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(14px,-16px)} }
+@keyframes bfloat4 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(-12px,14px)} }
+
+/* ── Grid bg ────────────────────────────────────── */
+.bg-grid {
+  background-image:url("data:image/svg+xml,%3Csvg width='44' height='44' viewBox='0 0 44 44' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%23006989' stroke-opacity='0.06' stroke-width='1'%3E%3Cpath d='M44 0L0 0 0 44'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+/* ── Typography ─────────────────────────────────── */
+.font-display      { font-family: Athletics,"Helvetica Neue",Arial,sans-serif; font-weight:900; }
+.font-display-800  { font-family: Athletics,"Helvetica Neue",Arial,sans-serif; font-weight:800; }
+.font-editorial    { font-family: "Editorial New",Georgia,serif; font-weight:200; }
+.font-mono         { font-family: "Geist Mono","JetBrains Mono",monospace; }
+
+/* Underline accents */
+.ul-ocean   { text-decoration:underline; text-decoration-color:var(--ocean);   text-decoration-thickness:3px; text-underline-offset:5px; }
+.ul-crimson { text-decoration:underline; text-decoration-color:var(--crimson); text-decoration-thickness:3px; text-underline-offset:5px; }
+.ul-forest  { text-decoration:underline; text-decoration-color:var(--forest);  text-decoration-thickness:3px; text-underline-offset:5px; }
+.ul-rose    { text-decoration:underline; text-decoration-color:var(--rose);    text-decoration-thickness:3px; text-underline-offset:5px; }
+.ul-sky     { text-decoration:underline; text-decoration-color:var(--sky);     text-decoration-thickness:3px; text-underline-offset:5px; }
+
+/* ── Glass ──────────────────────────────────────── */
+.glass {
+  background: rgba(231,236,239,0.52);
+  border: 1px solid rgba(0,105,137,0.12);
+  backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
+}
+.glass-strong {
+  background: rgba(255,255,255,0.62);
+  border: 1px solid rgba(0,105,137,0.13);
+  backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+}
+
+/* Liquid glass */
+.liquid-glass {
+  background: rgba(255,255,255,0.2);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.08), inset 2px 2px 1px rgba(255,255,255,0.52), inset -1px -1px 1px rgba(255,255,255,0.28);
+  transition: box-shadow 0.35s ease, transform 0.35s ease, border-color 0.35s ease;
+}
+.liquid-glass:hover { box-shadow: 0 8px 20px rgba(0,0,0,0.11), inset 2px 2px 2px rgba(255,255,255,0.68); }
+
+/* ── Hero BG ────────────────────────────────────── */
+.hero-bg-img {
+  background-image: url('/bg_walmart.jpg');
+  background-size: cover;
+  background-position: center 30%;
+  background-repeat: no-repeat;
+}
+
+/* ── Scrollbar ──────────────────────────────────── */
+::-webkit-scrollbar { width:4px; }
+::-webkit-scrollbar-track { background:transparent; }
+::-webkit-scrollbar-thumb { background:rgba(0,105,137,0.26); border-radius:3px; }
+
+/* ── Marquee — CSS only ─────────────────────────── */
+.marquee-track { display:flex; width:max-content; animation:marquee 28s linear infinite; will-change:transform; }
+@keyframes marquee { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
+
+/* ── Scroll reveal ──────────────────────────────── */
+.reveal       { opacity:0; transform:translateY(24px); transition:opacity 0.6s cubic-bezier(0.16,1,0.3,1), transform 0.6s cubic-bezier(0.16,1,0.3,1); }
+.reveal.visible { opacity:1; transform:translateY(0); }
+.reveal-left  { opacity:0; transform:translateX(-32px); transition:opacity 0.6s cubic-bezier(0.16,1,0.3,1), transform 0.6s cubic-bezier(0.16,1,0.3,1); }
+.reveal-left.visible  { opacity:1; transform:translateX(0); }
+.reveal-right { opacity:0; transform:translateX(32px);  transition:opacity 0.6s cubic-bezier(0.16,1,0.3,1), transform 0.6s cubic-bezier(0.16,1,0.3,1); }
+.reveal-right.visible { opacity:1; transform:translateX(0); }
+
+/* ── Recharts ───────────────────────────────────── */
+.recharts-default-tooltip {
+  background:rgba(255,255,255,0.93) !important;
+  border:1px solid rgba(0,105,137,0.16) !important;
+  border-radius:14px !important;
+  font-family:"Geist Mono",monospace !important;
+  color:#134074 !important;
+}
+
+/* ── Shimmer ────────────────────────────────────── */
+.shimmer {
+  background:linear-gradient(90deg,rgba(0,105,137,0.04) 0%,rgba(0,105,137,0.11) 50%,rgba(0,105,137,0.04) 100%);
+  background-size:200% 100%;
+  animation:shimmer 2s ease-in-out infinite;
+}
+@keyframes shimmer { 0%{background-position:-200% 0} 100%{background-position:200% 0} }
+
+/* ── Card hover ─────────────────────────────────── */
+.card-lift { transition:transform 0.3s cubic-bezier(0.16,1,0.3,1), box-shadow 0.3s ease; }
+.card-lift:hover { transform:translateY(-5px); box-shadow:0 14px 36px rgba(19,64,116,0.14); }
+
+/* ── Metric card — horizontal 3-up ─────────────── */
+.metric-cards { display:flex; gap:20px; flex-wrap:nowrap; }
+@media (max-width:900px) { .metric-cards { flex-wrap:wrap; gap:14px; } }
+
+/* ── Select / date ──────────────────────────────── */
+select option { background:#0a2a40; color:#ffffff; }
+input[type="date"] { color-scheme:light; }
+
+/* ── Dark section ───────────────────────────────── */
+.section-dark {
+  background: radial-gradient(ellipse at 30% 40%, #007090 0%, #1a0608 60%, #81171b 100%);
+}
+
+/* ── Predictor gradient section ─────────────────── */
+.section-predictor {
+  background: radial-gradient(ellipse at 70% 40%, #007090 0%, #0d1f2d 55%, #81171b 100%);
+}
+
+/* ── Glow effects ───────────────────────────────── */
+.glow-ocean { box-shadow: 0 0 30px rgba(0,112,144,0.3), 0 0 60px rgba(0,112,144,0.1); }
+.glow-crimson { box-shadow: 0 0 30px rgba(129,23,27,0.3), 0 0 60px rgba(129,23,27,0.1); }
+
+/* ── Brain float + glow — CSS only ─────────────── */
+@keyframes brainFloat {
+  0%,100% { transform: translateY(0) rotate(-1.5deg); }
+  50%      { transform: translateY(-14px) rotate(1deg); }
+}
+.brain-float { animation: brainFloat 7s ease-in-out infinite; will-change: transform; }
+
+@keyframes brainPulse {
+  0%,100% { filter: drop-shadow(0 8px 20px rgba(0,0,0,0.18)) drop-shadow(0 0 28px rgba(0,112,144,0.25)); }
+  50%     { filter: drop-shadow(0 8px 20px rgba(0,0,0,0.18)) drop-shadow(0 0 50px rgba(0,112,144,0.45)) drop-shadow(0 0 80px rgba(129,23,27,0.12)); }
+}
+.brain-glow { animation: brainPulse 4.5s ease-in-out infinite; }
+
+/* ── Texture overlay for sections ──────────────── */
+.texture-overlay {
+  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+
+/* ── Hover glow card ────────────────────────────── */
+.hover-glow {
+  transition: transform 0.28s cubic-bezier(0.16,1,0.3,1), box-shadow 0.28s ease;
+}
+.hover-glow:hover {
+  transform: translateY(-4px);
+}
+
+/* ── Stat number count ──────────────────────────── */
+@keyframes countUp {
+  from { opacity:0; transform:translateY(8px); }
+  to   { opacity:1; transform:translateY(0); }
+}
+.count-in { animation: countUp 0.5s ease forwards; }
