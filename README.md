@@ -1,20 +1,105 @@
-# Walsaler.ai — Retail Sales Intelligence
+<div align="center">
 
-> An end-to-end ML forecasting system that predicts weekly Walmart store sales with **91.81% accuracy**, powered by a Random Forest + Gradient Boosting ensemble trained on 421K records.
+<img src="assets/screenshots/hero.png" alt="Walsaler.ai" width="100%"/>
 
-![Walsaler.ai Hero](walmart-forecast/public/bg_walmart.jpg)
+<br/>
+
+# Walsaler.ai
+
+### Retail Sales Intelligence — End-to-End ML Forecasting System
+
+[![Python](https://img.shields.io/badge/Python-3.13-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://python.org)
+[![Next.js](https://img.shields.io/badge/Next.js-15-000000?style=for-the-badge&logo=nextdotjs&logoColor=white)](https://nextjs.org)
+[![FastAPI](https://img.shields.io/badge/FastAPI-009688?style=for-the-badge&logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com)
+[![scikit-learn](https://img.shields.io/badge/scikit--learn-F7931E?style=for-the-badge&logo=scikitlearn&logoColor=white)](https://scikit-learn.org)
+[![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://typescriptlang.org)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white)](https://tailwindcss.com)
+
+<br/>
+
+> Predicts weekly Walmart store sales with **91.81% accuracy** using a Random Forest + Gradient Boosting ensemble trained on **421,570 records** across 45 stores and 3 years of data.
+
+<br/>
+
+[**📊 Screenshots**](#-screenshots) · [**🚀 Quick Start**](#-quick-start) · [**🔌 API**](#-api) · [**🧠 How It Works**](#-how-it-works)
+
+</div>
 
 ---
 
-## 🧠 What It Does
+## ✨ Highlights
 
-Walsaler.ai takes a store number, department, and date — and returns a precise weekly sales forecast in under a second. It was built from scratch: raw CSV → feature engineering → ensemble model → FastAPI backend → Next.js frontend.
+<table>
+<tr>
+<td align="center" width="25%">
+<h3>91.81%</h3>
+<sub>Model Accuracy</sub>
+</td>
+<td align="center" width="25%">
+<h3>421K</h3>
+<sub>Training Records</sub>
+</td>
+<td align="center" width="25%">
+<h3>$4.60M</h3>
+<sub>Peak Forecast (Week 52)</sub>
+</td>
+<td align="center" width="25%">
+<h3>&lt; 1s</h3>
+<sub>Inference Time</sub>
+</td>
+</tr>
+</table>
 
-**Live demo features:**
-- Single prediction with real-time inference
-- Batch forecasting (up to 500 rows via CSV upload)
-- Analytics dashboard with Actual vs. Predicted chart
-- Full model transparency (feature importances, architecture info)
+---
+
+## 📸 Screenshots
+
+<table>
+<tr>
+<td width="50%">
+<img src="assets/screenshots/precise.png" alt="Built for Precision" width="100%"/>
+<p align="center"><sub>Built for Precision</sub></p>
+</td>
+<td width="50%">
+<img src="assets/screenshots/predictor.png" alt="What-If Predictor" width="100%"/>
+<p align="center"><sub>What-If Predictor — Live inference</sub></p>
+</td>
+</tr>
+<tr>
+<td width="50%">
+<img src="assets/screenshots/graph.png" alt="Analytics Dashboard" width="100%"/>
+<p align="center"><sub>Analytics — Actual vs Predicted</sub></p>
+</td>
+<td width="50%">
+<img src="assets/screenshots/capabilities.png" alt="Model Capabilities" width="100%"/>
+<p align="center"><sub>Key Features</sub></p>
+</td>
+</tr>
+<tr>
+<td colspan="2">
+<img src="assets/screenshots/pipeline.png" alt="Pipeline" width="100%"/>
+<p align="center"><sub>How I Did It — Full ML pipeline</sub></p>
+</td>
+</tr>
+</table>
+
+---
+
+## 🧠 How It Works
+
+```
+Raw CSVs  →  Feature Engineering  →  Ensemble Training  →  FastAPI  →  Next.js UI
+(421K rows)    (31 features)         (RF 60% + GB 40%)    (/predict)   (live forecast)
+```
+
+Two models trained independently, then blended at inference time:
+
+| Model | Config | Weight |
+|-------|--------|--------|
+| Random Forest | 200 trees · max depth 20 | **60%** |
+| Gradient Boosting | 300 trees · depth 6 · lr 0.08 | **40%** |
+
+> Validation split at **April 2012** — zero future leakage. Holiday weeks get **5× sample weight** during training.
 
 ---
 
@@ -22,107 +107,114 @@ Walsaler.ai takes a store number, department, and date — and returns a precise
 
 | Metric | Value |
 |--------|-------|
-| Weighted MAE (WMAE) | **8.19%** |
-| Model Accuracy | **91.81%** |
-| MAE | $1,450.52 |
-| RMSE | $3,174.48 |
-| Peak Forecast | $4.60M (Week 52, Holiday 2012) |
-
----
-
-## 🗂 Project Structure
-
-```
-walmart-app/
-├── walmart_forecast.py       # ML training script (run once)
-├── preprocessor.py           # WalmartPreprocessor class
-├── main.py                   # FastAPI backend
-├── model_random_forest.joblib
-├── model_gradient_boosting.joblib
-├── label_encoder.joblib
-├── model_metadata.joblib
-├── archive/                  # Kaggle CSVs (not committed — see Data section)
-│   ├── train.csv
-│   ├── test.csv
-│   ├── features.csv
-│   └── stores.csv
-└── walmart-forecast/         # Next.js 15 frontend
-    ├── app/
-    ├── components/
-    ├── hooks/
-    ├── lib/
-    └── public/
-```
+| ✅ Weighted MAE (WMAE) | **8.19%** |
+| ✅ Model Accuracy | **91.81%** |
+| 📉 MAE | $1,450.52 |
+| 📉 RMSE | $3,174.48 |
+| 🏆 Peak Forecast | $4.60M — Week 52 · Holiday 2012 |
+| 📈 vs. Single Model | +4.81% improvement |
 
 ---
 
 ## ⚙️ Tech Stack
 
-**ML / Backend**
-- Python 3.13 · Pandas · Scikit-learn · Joblib
-- FastAPI · Uvicorn
-- Random Forest (200 trees, depth 20) + Gradient Boosting (300 trees, depth 6, lr 0.08)
-
-**Frontend**
-- Next.js 15 · TypeScript · Tailwind CSS
-- Framer Motion · Recharts
+<table>
+<tr><th>Layer</th><th>Tools</th></tr>
+<tr><td>🤖 ML</td><td>Python 3.13 · Pandas · Scikit-learn · Joblib · NumPy</td></tr>
+<tr><td>🔌 Backend</td><td>FastAPI · Uvicorn · Pydantic</td></tr>
+<tr><td>🎨 Frontend</td><td>Next.js 15 · TypeScript · Tailwind CSS · Framer Motion</td></tr>
+<tr><td>📊 Charts</td><td>Recharts · Custom SVG animations</td></tr>
+</table>
 
 ---
 
-## 🚀 Getting Started
+## 🔧 31 Engineered Features
 
-### 1. Get the Data
+<details>
+<summary><b>Click to expand full feature list</b></summary>
 
-Download the Walmart Store Sales dataset from [Kaggle](https://www.kaggle.com/competitions/walmart-recruiting-store-sales-forecasting/data) and place the CSVs in an `archive/` folder:
+<br/>
+
+| Category | Features |
+|----------|----------|
+| ⏱ Time | Week, Month, Year, Quarter |
+| 🔄 Cyclical | `sin(2π·week/52)`, `cos(2π·week/52)` |
+| 📉 Lag Signals | Lag-4 weekly sales, Lag-13 weekly sales |
+| 📊 Rolling Stats | 4-week rolling mean, 4-week rolling std |
+| 🏪 Store Metadata | Store Type (A/B/C), Store Size, Dept encoded |
+| 💰 Economic | Temperature, Fuel Price, CPI, Unemployment |
+| 🏷️ Promotions | MarkDown 1, 2, 3, 4, 5 |
+| 🎄 Holidays | 8 flagged peak weeks (Thanksgiving, Christmas, etc.) |
+
+</details>
+
+---
+
+## 🚀 Quick Start
+
+### Prerequisites
+- Python 3.10+ with Anaconda
+- Node.js 18+
+- Kaggle account (for dataset)
+
+### 1️⃣ Get the Data
+
+Download from [Kaggle — Walmart Store Sales Forecasting](https://www.kaggle.com/competitions/walmart-recruiting-store-sales-forecasting/data) and place CSVs in `archive/`:
 
 ```
 archive/
-  train.csv
-  test.csv
-  features.csv
-  stores.csv
+  ├── train.csv
+  ├── test.csv
+  ├── features.csv
+  └── stores.csv
 ```
 
-### 2. Train the Model *(first time only — takes ~5–10 min)*
+### 2️⃣ Train the Model
+> ⏱ First time only — takes ~5–10 minutes
 
 ```bash
-cd walmart-app
 python walmart_forecast.py
 ```
 
-This generates 4 `.joblib` files in the project root.
+Generates 4 `.joblib` files: `model_random_forest`, `model_gradient_boosting`, `label_encoder`, `model_metadata`
 
-### 3. Start the Backend
+### 3️⃣ Start the Backend
 
 ```bash
 python main.py
-# API running at http://localhost:8000
+# ✅ API live at http://localhost:8000
 ```
 
-### 4. Start the Frontend
+### 4️⃣ Start the Frontend
 
 ```bash
 cd walmart-forecast
 npm install
 npm run dev
-# App running at http://localhost:3000
+# ✅ App live at http://localhost:3000
 ```
 
-> **Note:** Use `python` not `python3` if you're on Anaconda.
+> **Note:** Use `python` not `python3` if you're on Anaconda
 
 ---
 
-## 🔌 API Endpoints
+## 🔌 API
 
 | Method | Endpoint | Description |
 |--------|----------|-------------|
 | `GET` | `/` | Health check |
 | `GET` | `/model/info` | Model metadata & feature list |
-| `POST` | `/predict` | Single prediction |
-| `POST` | `/predict/batch` | Batch predictions (up to 500 rows) |
+| `POST` | `/predict` | Single store/dept/date prediction |
+| `POST` | `/predict/batch` | Batch up to 500 rows |
 
-**Single prediction payload:**
+<details>
+<summary><b>Example request & response</b></summary>
+
+<br/>
+
+**Request:**
 ```json
+POST /predict
 {
   "Store": 1,
   "Dept": 1,
@@ -135,42 +227,59 @@ npm run dev
 }
 ```
 
----
+**Response:**
+```json
+{
+  "prediction": 24823.45,
+  "model": "ensemble",
+  "rf_prediction": 25100.20,
+  "gb_prediction": 24420.80
+}
+```
 
-## 🧪 Feature Engineering
-
-31 features engineered from raw data:
-
-| Category | Features |
-|----------|----------|
-| Time | Week, Month, Year, Quarter, sin/cos cyclical encodings |
-| Lag signals | Lag-4, Lag-13 weekly sales |
-| Rolling stats | 4-week rolling mean & std |
-| Store metadata | Type (A/B/C), Size, Dept encoded |
-| Economic | Temperature, Fuel Price, CPI, Unemployment |
-| Promotions | MarkDown 1–5 |
-| Holiday flags | 8 peak weeks (Thanksgiving, Christmas, etc.) |
+</details>
 
 ---
 
-## 📁 Data
+## 🗂 Project Structure
 
-The raw CSV files are **not committed** to this repo (Kaggle terms of use). Download them from:
+<details>
+<summary><b>Click to expand</b></summary>
 
-👉 [Kaggle — Walmart Store Sales Forecasting](https://www.kaggle.com/competitions/walmart-recruiting-store-sales-forecasting/data)
+<br/>
 
-The `.joblib` model files are also excluded (large binary files). Run `walmart_forecast.py` to regenerate them.
+```
+walmart-app/
+├── 📄 walmart_forecast.py      # ML training script (run once)
+├── 📄 preprocessor.py          # WalmartPreprocessor class
+├── 📄 main.py                  # FastAPI backend
+├── 📁 archive/                 # Kaggle CSVs (not committed)
+└── 📁 walmart-forecast/        # Next.js 15 frontend
+    ├── app/
+    │   ├── page.tsx            # Main dashboard
+    │   └── globals.css         # Design tokens + animations
+    ├── components/
+    │   ├── layout/             # NavBar, HeroSection
+    │   ├── charts/             # SalesChart, FeatureImportanceChart
+    │   ├── forms/              # WhatIfPredictor, BatchUpload
+    │   └── ui/                 # ModelInfoCard, GlassFilter
+    ├── hooks/
+    │   └── useForecast.ts      # POST /predict with mock fallback
+    └── lib/
+        └── mock-data.ts        # Chart data, feature importances
+```
+
+</details>
 
 ---
 
-## 🖼️ Images
+## 📁 Data & Models
 
-Place these files in `walmart-forecast/public/` before running the frontend:
-
-- `brain.png` — hero robot/brain image
-- `bg_walmart.jpg` — hero background image
-
-These are excluded from the repo due to file size.
+| File | Why excluded | How to get |
+|------|-------------|------------|
+| `archive/*.csv` | Kaggle ToS | [Download here](https://www.kaggle.com/competitions/walmart-recruiting-store-sales-forecasting/data) |
+| `*.joblib` | Large binary files | Run `python walmart_forecast.py` |
+| `brain.png` / `bg_walmart.jpg` | Personal assets | Add to `walmart-forecast/public/` |
 
 ---
 
@@ -180,4 +289,12 @@ MIT — free to use, modify, and distribute.
 
 ---
 
-*Built by [@raniaf](https://github.com/raniaf) · Powered by scikit-learn + Next.js*
+<div align="center">
+
+**Built with Python + Next.js · scikit-learn ensemble · FastAPI · Recharts**
+
+<br/>
+
+*by [Rania Fahim](https://github.com/raniafahimx)*
+
+</div>
